@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Forms demo</title>
+</head>
+<body>
+    <form action="">
+        <input id="username" type="text" placeholder="Enter username">
+        <input id="password" type="password" placeholder="Enter password">
+        <button onclick="login()">Login</button>
+    </form>
+    <script>
+        function login(){
+            console.log('Login button clicked..')
+            var username = document.getElementById('username').value
+            console.log(username);
+        }
+    </script>
+</body>
+</html>
