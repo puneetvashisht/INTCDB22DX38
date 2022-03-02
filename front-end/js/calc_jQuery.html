@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="calc.css">
+</head>
+<body>
+    <h2>Calculator</h2>
+    <input type="number" placeholder="Enter 1st operand" id="oper1"/>
+    <input type="number" placeholder="Enter 2nd operand" id="oper2"/>
+<button onclick="add()" class="asm">+</button>
+<button onclick="sub()" class="asm">-</button>
+<button onclick="mul()" class="asm">*</button>
+<button onclick="divide()" id="divide">/</button>
+
+<p id="result"></p>
+<p>Random Text</p>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script><script >
+    function add(){
+  $("#result").text(parseInt($("#oper1").val())+parseInt($("#oper2").val()))
+//   var oper1= document.getElementById("oper1").value
+//   var oper2= document.getElementById("oper2").value
+//   var result= parseInt(oper1)+parseInt(oper2)
+//   console.log(result);
+
+//   document.getElementById("result").innerText="Result is "+result
+}
+</script>
+</body>
+</html>
