@@ -38,4 +38,22 @@ let products = [
 
 console.log("Sort by price");
 products.sort(compareBy('price'))
+
+
+products.sort(function(propertyName){
+
+    let x = a[propertyName];
+    let y = b[propertyName]
+    return function(){
+        if(x > y){
+            return 1;
+        }
+        else if(x < y){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }
+})
 console.table(products);
