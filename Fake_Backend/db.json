@@ -4,11 +4,6 @@
       "id": 2,
       "title": "React",
       "summary": "Test summary"
-    },
-    {
-      "title": "Vue",
-      "summary": "Framework",
-      "id": 3
     }
   ]
 }

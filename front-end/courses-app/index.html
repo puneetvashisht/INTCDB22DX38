@@ -6,9 +6,23 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<body onload="display()">
+<body onload="displayCourses()">
     <div class="container">
         <div class="row">
+            <h2>Add Course</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                <input type="text"  class="form-control" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Summary</span>
+                <input type="text"  class="form-control" placeholder="Enter summary" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <button class="btn btn-primary">Add Course</button>
+        </div>
+        <hr/>
+        <div class="row">
+            <h2>View Courses</h2>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Search Course By Title</span>
                 <input type="text" onkeyup="filterCourses()" class="form-control" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1">
@@ -21,20 +35,35 @@
 
 
     <script>
-        let courses = [
-            { id: 1, title: 'Angular', summary: 'Framework from Google!' },
-            { id: 2, title: 'React', summary: 'Library from React!' },
-            { id: 3, title: 'Ember', summary: 'Open source framework!' },
-            { id: 1, title: 'Angular', summary: 'Framework from Google!' },
-            { id: 2, title: 'React', summary: 'Library from React!' },
-            { id: 3, title: 'Ember', summary: 'Open source framework!' }
-        ]
+        // let courses = [
+        //     { id: 1, title: 'Angular', summary: 'Framework from Google!' },
+        //     { id: 2, title: 'React', summary: 'Library from React!' },
+        //     { id: 3, title: 'Ember', summary: 'Open source framework!' },
+        //     { id: 1, title: 'Angular', summary: 'Framework from Google!' },
+        //     { id: 2, title: 'React', summary: 'Library from React!' },
+        //     { id: 3, title: 'Ember', summary: 'Open source framework!' }
+        // ]
+        let courses = []
 
-        function deleteCourse(index){
+       async function fetchCourses(){
+            const response  = await fetch('http://localhost:8000/courses')
+            const res = await response.json();
+            return res;
+        }
+
+        function displayCourses(){
+            fetchCourses().then(c => {
+                courses = c;
+                display()
+            })
+
+        }
+
+        function deleteCourse(id){
             console.log('deleting course...');
-            courses.splice(index, 1);
-            console.log(courses);
-            display();
+            fetch('http://localhost:8000/courses/' + id, {
+                method: 'DELETE'
+            })
         }
         function filterCourses( ){
             console.log('filtering courses...');
@@ -60,7 +89,7 @@
     <h5 class="card-title">${course.title}</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
-    <button class="btn btn-danger" onclick="deleteCourse(${i})"> X </button>
+    <button class="btn btn-danger" onclick="deleteCourse(${course.id})"> X </button>
   </div>
 </div>`;
             console.log(listTemplate);
