@@ -17,3 +17,22 @@
 // console.log("Third Execution")
 
 // console.log("Fourth Execution")
+
+
+console.log('starting... ');
+
+//non-blocking 
+function foo(fn){
+    setTimeout(()=>{
+        console.log('foo function called..');
+        fn("success");
+    }, 5000)
+}
+
+// let result = foo();
+// console.log(result);
+
+foo((res)=> console.log(res));
+
+
+console.log('finishing...');

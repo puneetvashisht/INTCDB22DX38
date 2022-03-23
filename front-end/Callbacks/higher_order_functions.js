@@ -8,8 +8,6 @@
   function isEven(number) {
     return number % 2 == 0;
   }
-  
-
 
 
   function filter(numbers, fn) {          // Filter method is a Higher - Order function.
@@ -22,8 +20,10 @@
     return results;
   }
 
-
   let numbers = [1, 2, 4, 7, 3, 5, 6];
+  filter(numbers, isEven)
+
+
 
 
 

@@ -12,13 +12,13 @@
             <h2>Add Course</h2>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Title</span>
-                <input type="text"  class="form-control" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1">
+                <input id="ctitle" type="text"  class="form-control" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1">
               </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Summary</span>
-                <input type="text"  class="form-control" placeholder="Enter summary" aria-label="Username" aria-describedby="basic-addon1">
+                <input id="csummary" type="text"  class="form-control" placeholder="Enter summary" aria-label="Username" aria-describedby="basic-addon1">
               </div>
-              <button class="btn btn-primary">Add Course</button>
+              <button onclick="addCourse()" class="btn btn-primary">Add Course</button>
         </div>
         <hr/>
         <div class="row">
@@ -59,10 +59,35 @@
 
         }
 
+        function addCourse(id){
+            event.preventDefault();
+            const title = document.getElementById('ctitle').value;
+            const summary = document.getElementById('csummary').value;
+            console.log('deleting course...');
+            fetch('http://localhost:8000/courses/', {
+                method: 'POST',
+                body: JSON.stringify({title, summary}),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            .then(res=>res.json)
+            .then(data=> {
+                console.log(data);
+                displayCourses();
+            })
+        }
+
         function deleteCourse(id){
+            event.preventDefault();
             console.log('deleting course...');
             fetch('http://localhost:8000/courses/' + id, {
                 method: 'DELETE'
+            })
+            .then(res=>res.json)
+            .then(data=> {
+                console.log(data);
+                displayCourses();
             })
         }
         function filterCourses( ){
@@ -89,7 +114,7 @@
     <h5 class="card-title">${course.title}</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
-    <button class="btn btn-danger" onclick="deleteCourse(${course.id})"> X </button>
+    <button type="button" class="btn btn-danger" onclick="deleteCourse(${course.id})"> X </button>
   </div>
 </div>`;
             console.log(listTemplate);
