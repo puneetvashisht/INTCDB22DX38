@@ -1,0 +1,23 @@
+html
+  head
+    title= Products
+  body
+    //- #table-wrapper
+    //- table#desc
+    //-   tr
+    //-     th Title
+    //-     th Price
+    //-   tr
+    //-     td= title
+    //-     td= price
+
+    table(width='100%', cellspacing='0', cellpadding='0', border='0', bgcolor='#F2F2F2')
+        thead
+            tr
+              th Title
+              th Price
+        tbody
+          each product in products
+              tr
+                td #{product.title}
+                td #{product.price}

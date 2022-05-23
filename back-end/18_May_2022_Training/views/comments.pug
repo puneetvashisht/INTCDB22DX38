@@ -1,0 +1,25 @@
+html
+  head
+    title= Comments
+  body
+    //- #table-wrapper
+    //- table#desc
+    //-   tr
+    //-     th Title
+    //-     th Price
+    //-   tr
+    //-     td= title
+    //-     td= price
+
+    table(width='100%', cellspacing='0', cellpadding='0', border='0', bgcolor='#F2F2F2')
+        thead
+            tr
+              th Name
+              th Email
+              th Body
+        tbody
+          each comment in comments
+              tr
+                td #{comment.name}
+                td #{comment.email}
+                td #{comment.body}
